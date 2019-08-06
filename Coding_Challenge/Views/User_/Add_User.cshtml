@@ -1,0 +1,31 @@
+﻿@model Coding_Challenge.Models.ViewModels.cls_AddUserViewModel
+@{
+    ViewBag.Title = "Add_User";
+}
+<!--<form action="" method="post"></form>-->
+
+@using (Html.BeginForm("Add_User", "User_", FormMethod.Post))
+{
+    <div class="row" style="margin: 50px;">
+        <h2>Add a New User</h2>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="row">
+                @Html.LabelFor(d => d.sFirtName)
+                @Html.TextBoxFor(d => d.sFirtName, "", new { @class = "form-control" })
+                @Html.ValidationMessageFor(d => d.sFirtName, null, new { @class = "red" })
+            </div>
+            <div class="row">
+                @Html.LabelFor(d => d.sLastName)
+                @Html.TextBoxFor(d => d.sLastName, "", new { @class = "form-control" })
+                @Html.ValidationMessageFor(d => d.sLastName, null, new { @class = "red" })
+            </div>
+        </div>
+
+        <div class="col-md-12" style="text-align:right;padding:5px">
+            <input value="Save User" type="submit" class="btn btn-primary" />
+        </div>
+    </div>
+}

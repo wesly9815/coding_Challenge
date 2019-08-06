@@ -1,0 +1,71 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Coding_ChallengeModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Project">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="StartDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="EndDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Credits" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="UserProjects" Relationship="Self.FK__UserProje__Proje__59063A47" FromRole="Projects" ToRole="UserProjects" />
+  </EntityType>
+  <EntityType Name="UserProject">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserId" Type="Int32" Nullable="false" />
+    <Property Name="ProjectId" Type="Int32" Nullable="false" />
+    <Property Name="IsActive" Type="Boolean" Nullable="false" />
+    <Property Name="AssignedDate" Type="DateTime" Nullable="false" Precision="3" />
+    <NavigationProperty Name="Project" Relationship="Self.FK__UserProje__Proje__59063A47" FromRole="UserProjects" ToRole="Projects" />
+    <NavigationProperty Name="User" Relationship="Self.FK__UserProje__UserI__5812160E" FromRole="UserProjects" ToRole="Users" />
+  </EntityType>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="UserProjects" Relationship="Self.FK__UserProje__UserI__5812160E" FromRole="Users" ToRole="UserProjects" />
+  </EntityType>
+  <Association Name="FK__UserProje__Proje__59063A47">
+    <End Role="Projects" Type="Self.Project" Multiplicity="1" />
+    <End Role="UserProjects" Type="Self.UserProject" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Projects">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="UserProjects">
+        <PropertyRef Name="ProjectId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__UserProje__UserI__5812160E">
+    <End Role="Users" Type="Self.User" Multiplicity="1" />
+    <End Role="UserProjects" Type="Self.UserProject" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="UserProjects">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="Coding_ChallengeEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Projects" EntityType="Self.Project" />
+    <EntitySet Name="UserProjects" EntityType="Self.UserProject" />
+    <EntitySet Name="Users" EntityType="Self.User" />
+    <AssociationSet Name="FK__UserProje__Proje__59063A47" Association="Self.FK__UserProje__Proje__59063A47">
+      <End Role="Projects" EntitySet="Projects" />
+      <End Role="UserProjects" EntitySet="UserProjects" />
+    </AssociationSet>
+    <AssociationSet Name="FK__UserProje__UserI__5812160E" Association="Self.FK__UserProje__UserI__5812160E">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="UserProjects" EntitySet="UserProjects" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

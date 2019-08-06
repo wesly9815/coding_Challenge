@@ -1,0 +1,40 @@
+﻿@model List<Coding_Challenge.Models.ProjectViewModels.cls_ListProjectViewModel>
+@{
+    ViewBag.Title = "list_Project";
+}
+
+<div class="row" style="margin: 50px;">
+    <h2>Projects</h2>
+</div>
+
+
+<div class="row" style="text-align:right; padding:5px">
+    <a href="../Project_/Add_Project" class="btn btn-primary">Add Project</a>
+</div>
+
+
+<div class="row">
+    <div class="col-md-12">
+        <table class="table">
+            <tr>
+                <th># ID</th>
+                <th>Start Date</th>
+                <th>Credits</th>
+                <th>End Date</th>
+                <th>Function</th>
+            </tr>
+            @foreach (var Obj_project in Model)
+            {
+            <tr>
+                <td>@Obj_project.iId</td>
+                <td>@Obj_project.dtStartDate</td>
+                <td>@Obj_project.iCredits</td>
+                <td>@Obj_project.dtEndData</td>
+                <td>
+                    <a href="/Project_/Delete_Project/@Obj_project.iId" class="btn btn-danger">Delete</a>
+                </td>
+            </tr>
+            }
+        </table>
+    </div>
+</div>

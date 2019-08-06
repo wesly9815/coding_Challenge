@@ -1,0 +1,37 @@
+﻿@model List<Coding_Challenge.Models.ViewModels.cls_listUserViewModel>
+@{
+    ViewBag.Title = "Mis datos";
+}
+
+<div class="row" style="margin: 50px;">
+    <h2>Users</h2>
+</div>
+
+<div class="row" style="text-align:right; padding:5px">
+    <a href="../User_/Add_User" class="btn btn-primary">Add User</a>
+</div>
+
+
+<div class="row">
+    <div class="col-md-12">
+        <table class="table">
+            <tr>
+                <th># ID</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Function</th>
+            </tr>
+            @foreach (var user in Model)
+            {
+                <tr>
+                    <td>@user.iId</td>
+                    <td>@user.sFirtName</td>
+                    <td>@user.sLastName</td>
+                    <td>
+                        <a href="/User_/Delete_User/@user.iId" class="btn btn-danger">Delete</a>
+                    </td>
+                </tr>
+            }
+        </table>
+    </div>
+</div>

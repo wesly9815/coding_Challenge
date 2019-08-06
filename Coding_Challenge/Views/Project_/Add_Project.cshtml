@@ -1,0 +1,37 @@
+﻿@model Coding_Challenge.Models.ProjectViewModels.cls_AddProjectViewModel
+@{
+    ViewBag.Title = "Add_Project";
+}
+
+<h2></h2>
+
+@using (Html.BeginForm("Add_Project", "Project_", FormMethod.Post))
+{
+    <div class="row" style="margin: 50px;">
+        <h2>Add a New Project</h2>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="row">
+                @Html.LabelFor(d => d.dtStartDate)<br />
+                @Html.EditorFor(d => d.dtStartDate, "", new { @class = "form-control" })<br />
+                @Html.ValidationMessageFor(d => d.dtStartDate, null, new { @class = "red" })
+            </div>
+            <div class="row">
+                @Html.LabelFor(d => d.iCredits)
+                @Html.TextBoxFor(d => d.iCredits, "", new { @class = "form-control" })
+                @Html.ValidationMessageFor(d => d.iCredits, null, new { @class = "red" })
+            </div>
+            <div class="row">
+                @Html.LabelFor(d => d.dtEndData)<br />
+                @Html.EditorFor(d => d.dtEndData, "", new { @class = "form-control" })<br />
+                @Html.ValidationMessageFor(d => d.dtEndData, null, new { @class = "red" })
+            </div>
+        </div>
+
+        <div class="col-md-12" style="text-align:right;padding:5px">
+            <input value="Save Project" type="submit" class="btn btn-primary" />
+        </div>
+    </div>
+}

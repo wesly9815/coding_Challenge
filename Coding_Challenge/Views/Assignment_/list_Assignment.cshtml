@@ -1,0 +1,42 @@
+﻿@model List<Coding_Challenge.Models.AssignmentViewModels.cls_ListAssignmentViewModel>
+@{
+    ViewBag.Title = "list_Assignment";
+}
+
+<div class="row" style="margin: 50px;">
+    <h2>Assignments</h2>
+</div>
+
+
+<div class="row" style="text-align:right; padding:5px">
+    <a href="../Assignment_/Add_Assignment" class="btn btn-primary">Add Assigment</a>
+</div>
+
+
+<div class="row">
+    <div class="col-md-12">
+        <table class="table">
+            <tr>
+                <th># ID</th>
+                <th>User Name</th>
+                <th>Project ID</th>
+                <th>Is Active?</th>
+                <th>Assignment Date</th>
+                <th>Function</th>
+            </tr>
+            @foreach (var Obj_assigment in Model)
+            {
+            <tr>
+                <td>@Obj_assigment.iId</td>
+                <td>@Obj_assigment.iUserId</td>
+                <td>@Obj_assigment.iProjectId</td>
+                <td>@Obj_assigment.bIsActive</td>
+                <td>@Obj_assigment.dtAssignedDate</td>
+                <td>
+                    <a href="/Assignment_/Delete_Assignment/@Obj_assigment.iId" class="btn btn-danger">Delete</a>
+                </td>
+            </tr>
+            }
+        </table>
+    </div>
+</div>
